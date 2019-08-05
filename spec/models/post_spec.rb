@@ -10,12 +10,20 @@ RSpec.describe 'Post' do
 	end
 
 	context '#create' do 
-
 	    it 'creates a new post' do
-			# checking if worker created
+			# checking if post created
 	        expect(Post.all.size).to eq 1
     	end
 
+    	it "errs if title is empty" do
+    		@new_post.title = nil
+    		expect(@new_post).to_not be_valid
+    	end
+
+    	it "errs if content is empty" do 
+    		@new_post.content = nil
+    		expect(@new_post).to_not be_valid
+    	end
     end
 
 end
