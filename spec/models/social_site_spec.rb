@@ -19,4 +19,14 @@ RSpec.describe 'SocialSites' do
       expect(@user.social_sites.size).to eq(1)
     end
 	end
+
+  it 'errs when title is empty' do
+    @new_site.title = nil
+    expect(@new_site).to_not be_valid
+  end
+
+  it 'errs when link is empty' do
+    @new_site.link = nil
+    expect(@new_site).to_not be_valid
+  end
 end
