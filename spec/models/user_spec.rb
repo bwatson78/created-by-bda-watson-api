@@ -68,5 +68,10 @@ RSpec.describe 'User' do
     it 'responds to #headshot' do
       expect(@new_user).to respond_to(:headshot)
     end
+
+    it 'attaches an image' do
+      @new_user.headshot.attach(io: File.open(fixture_path + '/Headshot.png'), filename: 'Headshot.png', content_type: 'image/png')
+      expect(@new_user.headshot).to be_attached
+    end
   end
 end
