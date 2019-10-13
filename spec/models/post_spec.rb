@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require './spec/helpers/blog_spec_helpers'
+
+RSpec.configure do |c|
+  c.include BlogHelpers
+end
 
 RSpec.describe 'Post#create' do
   before(:each) do
-    @blog = Blog.create(
-      title: 'Development',
-      summary: 'Blah.'
-    )
+    @blog = new_blog
     @new_post = @blog.posts.create(
       title: "I'm a new post!",
       content: 'Welcome to my development blog.'

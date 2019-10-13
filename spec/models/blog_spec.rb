@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
+require './spec/helpers/blog_spec_helpers'
+
+RSpec.configure do |c|
+  c.include BlogHelpers
+end
 
 RSpec.describe 'Blog' do
   before(:each) do
-    @blog = Blog.create(
-      title: "Main",
-      summary: "This is my main blog."
-    )
+    @blog = new_blog
   end
 
-  context '#create' do
-    it 'expects a new blog to be created' do
-      expect(Blog.all.size).to eq(1)
-    end
+  it 'expects a new blog to be created' do
+    expect(Blog.all.size).to eq(1)
   end
 
   it 'errs when title is empty' do
@@ -33,7 +35,7 @@ RSpec.describe 'Blog' do
   end
 
   it 'attaches an banner' do
-    @blog.banner.attach(io: File.open(fixture_path + '/Headshot.png'), filename: 'Headshot.png', content_type: 'image/png')
+    attach_banner
     expect(@blog.banner).to be_attached
   end
 end

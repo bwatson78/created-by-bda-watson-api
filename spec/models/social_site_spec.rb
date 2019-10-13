@@ -1,13 +1,13 @@
 require 'rails_helper'
+require './spec/helpers/user_spec_helpers'
+
+RSpec.configure do |c|
+  c.include UserHelpers
+end
 
 RSpec.describe 'SocialSites' do
 	before(:each) do
-    @user = User.create(
-      email: "edwatanabe@bdawatson.com",
-      password: "Crapton123456789",
-      password_confirmation: "Crapton123456789",
-      admin: true
-    )
+    @user = new_user
 		@new_site = @user.social_sites.create(
 			title: 'Facebook',
 			link: 'https://www.facebook.com/bwatson78'
