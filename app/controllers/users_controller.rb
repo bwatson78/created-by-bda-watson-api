@@ -6,4 +6,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render json: @user.as_json.merge(social_sites: @user.social_sites.as_json)
   end
+
+  def brads_deets
+    @user = User.find_by_email('brad.watson.orlando@gmail.com')
+    render json: UserSerializer.new(@user).as_json
+  end
 end

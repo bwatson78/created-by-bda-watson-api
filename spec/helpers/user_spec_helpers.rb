@@ -28,8 +28,21 @@ module UserHelpers
     )
   end
 
+  def brad_user
+    User.create(
+      email: 'brad.watson.orlando@gmail.com',
+      password: 'Crapton123456789',
+      password_confirmation: 'Crapton123456789',
+      admin: true
+    )
+  end
+
   def request_user
     get "/users/#{@user.id}"
+  end
+
+  def request_brads_deets
+    get '/brads_deets'
   end
 
   def parsed_body
