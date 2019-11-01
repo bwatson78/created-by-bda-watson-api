@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   resources :users
   get '/brads_deets', to: 'users#brads_deets'
+  post '/auth/login', to: 'authentication#login'
+  get '/*a', to: 'application#not_found'
 end
