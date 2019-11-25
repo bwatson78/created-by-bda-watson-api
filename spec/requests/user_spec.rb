@@ -14,7 +14,8 @@ RSpec.describe '/users/:id', type: :request do
       ['Facebook', 'https://www.facebook.com/bwatson78'],
       ['Twitter', 'https://www.twitter.com/Bradleyatson']
     ].each { |site| @user.social_sites.create(title: site[0], link: site[1]) }
-    request_user
+    @token = request_login
+    request_user_with_header
     parsed_body
   end
 
@@ -28,6 +29,22 @@ RSpec.describe '/users/:id', type: :request do
 
   it 'returns all social sites' do
     expect(@body['social_sites'].size).to eq(2)
+  end
+
+  it 'returns the right keys' do
+    expect(@body.keys).to eq(['id','email','admin','summary','social_sites'])
+  end
+
+  it 'returns status code 401 if no authorization header' do
+    request_user
+    expect(response).to have_http_status(401)
+  end
+
+  it 'returns status code 401 if no user found' do
+    get "/users/#{@user.id + 1}",
+      params: {},
+      headers: { 'Authorization' => @token }
+    expect(response).to have_http_status(401)
   end
 end
 
