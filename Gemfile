@@ -28,6 +28,7 @@ gem "valid_email2"
 gem 'rubocop-rails'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
