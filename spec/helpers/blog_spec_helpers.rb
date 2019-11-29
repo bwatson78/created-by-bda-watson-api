@@ -15,4 +15,15 @@ module BlogHelpers
       content_type: 'image/png'
     )
   end
+
+  def create_multiple_blogs
+    @blogs = [
+      ['Main', 'This is my main blog'],
+      ['Secondary', 'This is my secondary blog']
+    ].map{|title, summary| Blog.create(title: title, summary: summary)}
+  end
+
+  def request_blogs
+    get '/blogs'
+  end
 end
