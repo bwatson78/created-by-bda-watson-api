@@ -10,7 +10,7 @@ end
 RSpec.describe '/auth/login', type: :request do
   before(:each) do
     @user = brad_user
-    post '/auth/login', :params => {:email => @user.email, :password => @user.password}
+    post '/auth/login', params: { email: @user.email, password: @user.password }
   end
 
   it 'returns status code 200' do

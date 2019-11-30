@@ -20,7 +20,7 @@ module BlogHelpers
     @blogs = [
       ['Main', 'This is my main blog'],
       ['Secondary', 'This is my secondary blog']
-    ].map{|title, summary| Blog.create(title: title, summary: summary)}
+    ].map { |title, summary| Blog.create(title: title, summary: summary) }
   end
 
   def request_blogs

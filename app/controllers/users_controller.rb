@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user
       render json: UserSerializer.new(@user).as_json
     else
-      render json: {error: 'User not found.', status: 401}, status: 401
+      render json: { error: 'User not found.', status: 401 }, status: 401
     end
   end
 

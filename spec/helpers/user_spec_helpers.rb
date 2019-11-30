@@ -43,8 +43,8 @@ module UserHelpers
 
   def request_user_with_header
     get "/users/#{@user.id}",
-      params: {},
-      headers: { 'Authorization' => @token }
+        params: {},
+        headers: { 'Authorization' => @token }
   end
 
   def request_brads_deets
@@ -52,9 +52,9 @@ module UserHelpers
   end
 
   def request_login
-    post '/auth/login', :params => {
-      :email => @user.email,
-      :password => @user.password
+    post '/auth/login', params: {
+      email: @user.email,
+      password: @user.password
     }
     JSON.parse(response.body)['token']
   end
@@ -69,5 +69,12 @@ module UserHelpers
       filename: 'Headshot.png',
       content_type: 'image/png'
     )
+  end
+
+  def create_multiple_social_sites
+    [
+      ['Facebook', 'https://www.facebook.com/bwatson78'],
+      ['Twitter', 'https://www.twitter.com/Bradleyatson']
+    ].map { |site| @user.social_sites.create(title: site[0], link: site[1]) }
   end
 end
